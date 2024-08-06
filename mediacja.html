@@ -122,31 +122,32 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 160px;
+            padding: 10px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 10px;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            max-height: 0;
-            opacity: 0;
+            white-space: nowrap;
         }
+
+        nav .dropdown:hover .dropdown-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+        }
+
         nav .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-transform: none;
-            font-weight: normal;
+            display: inline-block;
+            padding: 8px 15px; /* Zmniejszone padding */
+            margin: 0 5px;
             background-color: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 0.9rem; /* Zmniejszony font size */
+            color: black;
         }
+
         nav .dropdown-content a:hover {
             background-color: #f1f1f1;
-        }
-        nav .dropdown:hover .dropdown-content {
-            display: block;
-            max-height: 500px;
-            opacity: 1;
         }
         nav .dropdown-content a {
             animation: fadeInMenu 0.3s ease-out forwards;
@@ -312,7 +313,6 @@
             color: white;
             padding: 1rem;
         }
-
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -326,12 +326,28 @@
         }
 
         .column.links {
-            flex: 2;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
+            flex: 1;
+            margin-left: 0;
         }
 
+        .column.links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .column.links ul li {
+            margin-bottom: 10px;
+        }
+
+        .column.links ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .column.links ul li a:hover {
+            color: #4CAF50;
+        }
         .column.contact-info {
             flex: 1;
             margin-left: auto;
@@ -348,23 +364,28 @@
             display: block;
             margin: 0.5rem 0;
         }
-
-        .footer-social-icons {
-            display: flex;
-            justify-content: center;
+        .column.contact-info ul {
+            margin: 0.5rem 0;
+        }
+        .bottom-bar {
+            text-align: center;
             margin-top: 1rem;
         }
 
-        .footer-social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .footer-social-icons a:hover {
-            color: #00f;
+            .column {
+                margin: 1rem 0;
+                text-align: center;
+            }
+
+            .column.contact-info {
+                text-align: center;
+            }
         }
         .privacy-modal {
             display: none;
@@ -448,6 +469,7 @@
     text-align: center;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
+    display: none; /* Baner jest ukryty domyślnie */
 }
 
 .privacy-banner button {
@@ -461,7 +483,6 @@
     position: relative;
     left: -40px; /* Przesuwa przycisk bardziej do lewej o 40px */
 }
-
 
 .privacy-banner button:hover {
     background-color: #45a049;
@@ -533,25 +554,22 @@
     <footer>
         <div class="footer-content">
             <div class="column links">
-                <h3>Przydatne Linki</h3>
+                <h3>Skróty</h3>
                 <a href="Index.html">Aktualności</a>
                 <a href="Index.html#about">O mnie</a>
                 <a href="Index.html#services">Usługi</a>
-                <a href="wynagrodzenie.html">Wynagrodzenie</a>
                 <a href="Index.html#contact">Kontakt</a>
-                <a href="RODO.html">RODO i Pliki Cookies</a>
+                <a href="RODO.html">Polityka Prywatności i Pliki Cookie</a>
             </div>
             <div class="column contact-info">
-                <h3>Kontakt</h3>
-                <p>Email: >kontakt@mediacjekonsultacje.pl</p>
-                <p>Tel: 605 982 147</p>
-                <p>Adres: ul. Sikorskiego 4 lok. 200, 65-454 Zielona Góra</p>
+                <h3>Dane Kontaktowe</h3>
+                <p>>kontakt@mediacjekonsultacje.pl</p>
+                <p>605 982 147</p>
+                <p>Adres biura: ul. Sikorskiego 4 lok. 200, 65-454 Zielona Góra</p>
                 <p>Godziny otwarcia:</p>
-                <ul>
-                    <li>Poniedziałek - Piątek: 9:00 - 17:00</li>
-                    <li>Sobota: 10:00 - 14:00</li>
-                    <li>Spotkania po umówieniu telefonicznym</li>
-                </ul>
+                <p>(po wcześniejszym umówieniu terminu telefonicznie/mailowo)</p>
+                <p>Poniedziałek - Piątek: 9:00 - 17:00</p>
+                <p>Sobota: 10:00 - 14:00</p>
             </div>
         </div>
         <div class="bottom-bar">
@@ -560,10 +578,18 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const privacyLink = document.getElementById('privacyLink');
-            const privacyModal = document.getElementById('privacyModal');
-            const closeModal = document.querySelector('.privacy-modal .close');
+    const privacyBanner = document.getElementById('privacyBanner');
+    const acceptPrivacy = document.getElementById('acceptPrivacy');
 
+    if (!localStorage.getItem('privacyAccepted')) {
+        privacyBanner.style.display = 'flex';
+    }
+
+    acceptPrivacy.addEventListener('click', function() {
+        localStorage.setItem('privacyAccepted', 'true');
+        privacyBanner.style.display = 'none';
+    });
+});
             privacyLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 privacyModal.style.display = 'block';
@@ -585,21 +611,6 @@
             toggleButton.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
             });
-        });
-            document.addEventListener('DOMContentLoaded', function() {
-        const privacyBanner = document.getElementById('privacyBanner');
-        const acceptPrivacy = document.getElementById('acceptPrivacy');
-
-        if (!localStorage.getItem('privacyAccepted')) {
-            privacyBanner.style.display = 'flex';
-        }
-
-        acceptPrivacy.addEventListener('click', function() {
-            localStorage.setItem('privacyAccepted', 'true');
-            privacyBanner.style.display = 'none';
-        });
-    });
-
     </script>
     <div class="privacy-banner" id="privacyBanner">
         <p>Nasza strona używa plików cookie do świadczenia usług na najwyższym poziomie. Kontynuując korzystanie ze strony, zgadzasz się na naszą <a href="RODO.html">Politykę Prywatności</a>.</p>

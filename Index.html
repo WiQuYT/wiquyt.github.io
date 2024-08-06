@@ -270,7 +270,6 @@
             color: white;
             padding: 1rem;
         }
-
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -306,8 +305,6 @@
         .column.links ul li a:hover {
             color: #4CAF50;
         }
-
-
         .column.contact-info {
             flex: 1;
             margin-left: auto;
@@ -324,12 +321,9 @@
             display: block;
             margin: 0.5rem 0;
         }
-
-        .column.contact-info p,
         .column.contact-info ul {
             margin: 0.5rem 0;
         }
-
         .bottom-bar {
             text-align: center;
             margin-top: 1rem;
@@ -432,6 +426,7 @@
     text-align: center;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
+    display: none; /* Baner jest ukryty domyślnie */
 }
 
 .privacy-banner button {
@@ -446,7 +441,6 @@
     left: -40px; /* Przesuwa przycisk bardziej do lewej o 40px */
 }
 
-
 .privacy-banner button:hover {
     background-color: #45a049;
     transform: scale(1.05);
@@ -455,7 +449,6 @@
 .privacy-banner button:active {
     transform: scale(0.95);
 }
-
     </style>
 </head>
 <body>
@@ -553,23 +546,22 @@
     <footer>
         <div class="footer-content">
             <div class="column links">
-                <h3>Przydatne Linki</h3>
+                <h3>Skróty</h3>
                 <a href="Index.html">Aktualności</a>
                 <a href="Index.html#about">O mnie</a>
                 <a href="Index.html#services">Usługi</a>
-                <a href="wynagrodzenie.html">Wynagrodzenie</a>
                 <a href="Index.html#contact">Kontakt</a>
-                <a href="RODO.html">RODO i Pliki Cookies</a>
+                <a href="RODO.html">Polityka Prywatności i Pliki Cookie</a>
             </div>
             <div class="column contact-info">
-                <h3>Kontakt</h3>
-                <p>Email: kontakt@mediacjekonsultacje.pl</p>
-                <p>Tel: 605 982 147</p>
-                <p>Adres: ul. Sikorskiego 4 lok. 200, 65-454 Zielona Góra</p>
+                <h3>Dane Kontaktowe</h3>
+                <p>kontakt@mediacjekonsultacje.pl</p>
+                <p>605 982 147</p>
+                <p>Adres biura: ul. Sikorskiego 4 lok. 200, 65-454 Zielona Góra</p>
                 <p>Godziny otwarcia:</p>
+                <p>(po wcześniejszym umówieniu terminu telefonicznie/mailowo)</p>
                 <p>Poniedziałek - Piątek: 9:00 - 17:00</p>
                 <p>Sobota: 10:00 - 14:00</p>
-                <p>Spotkania po umówieniu telefonicznym</p>
             </div>
         </div>
         <div class="bottom-bar">
@@ -578,10 +570,18 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const privacyLink = document.getElementById('privacyLink');
-            const privacyModal = document.getElementById('privacyModal');
-            const closeModal = document.querySelector('.privacy-modal .close');
+    const privacyBanner = document.getElementById('privacyBanner');
+    const acceptPrivacy = document.getElementById('acceptPrivacy');
 
+    if (!localStorage.getItem('privacyAccepted')) {
+        privacyBanner.style.display = 'flex';
+    }
+
+    acceptPrivacy.addEventListener('click', function() {
+        localStorage.setItem('privacyAccepted', 'true');
+        privacyBanner.style.display = 'none';
+    });
+});
             privacyLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 privacyModal.style.display = 'block';
@@ -603,21 +603,6 @@
             toggleButton.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
             });
-        });
-            document.addEventListener('DOMContentLoaded', function() {
-        const privacyBanner = document.getElementById('privacyBanner');
-        const acceptPrivacy = document.getElementById('acceptPrivacy');
-
-        if (!localStorage.getItem('privacyAccepted')) {
-            privacyBanner.style.display = 'flex';
-        }
-
-        acceptPrivacy.addEventListener('click', function() {
-            localStorage.setItem('privacyAccepted', 'true');
-            privacyBanner.style.display = 'none';
-        });
-    });
-
     </script>
     <div class="privacy-banner" id="privacyBanner">
         <p>Nasza strona używa plików cookie do świadczenia usług na najwyższym poziomie. Kontynuując korzystanie ze strony, zgadzasz się na naszą <a href="RODO.html">Politykę Prywatności</a>.</p>
