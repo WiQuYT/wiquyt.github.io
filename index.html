@@ -6,11 +6,20 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="style.css">
-        
+        <meta name="google-signin-client_id" content="318432368759-qhd9gm6kr8a9k7h2arv8tt76jcbvcun4.apps.googleusercontent.com.apps.googleusercontent.com">
         <title>Logowanie</title>
     </head>
-
+    <div id="customAlert" class="custom-alert hidden">
+        <div class="alert-header">
+            <span class="alert-title">Uwaga!</span>
+            <button class="close-btn" onclick="closeAlert()">X</button>
+        </div>
+        <div class="alert-content">
+            <span id="alertMessage">Treść alertu.</span>
+        </div>
+    </div>    
     <body class="animate__animated animate__fadeIn">
+        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="sign_in_with" data-size="large" data-logo_alignment="left"></div>
         <div class="container" id="container">
             <div class="form-container sign-up">
             <form id="registerForm">
@@ -40,7 +49,7 @@
                 <span>albo użyj konta email by się zalogować</span>
                 <input type="email" id="username" placeholder="Email" required>
                 <input type="password" id="password" placeholder="Hasło" required>
-                <a href="#">Zapomniałeś swojego hasła?></a>
+                <a class="forget-button" href="#">Zapomniałeś swojego hasła?</a>
                 <button class="animated-button" type="submit">Zaloguj Się</button>
             </form>
         </div>
@@ -60,5 +69,23 @@
         </div>
     </div>
         <script src="login.js"></script>
+        <script>
+            function onSignIn(googleUser) {
+                const profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId());
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail());
+    
+                document.getElementById('userName').innerText = "Witaj, " + profile.getName();
+            }
+    
+            function signOut() {
+                const auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
     </body>
 </html>
