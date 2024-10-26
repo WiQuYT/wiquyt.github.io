@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="style.css">
+        
+        <title>Logowanie</title>
+    </head>
+
+    <body class="animate__animated animate__fadeIn">
+        <div class="container" id="container">
+            <div class="form-container sign-up">
+            <form id="registerForm">
+                <h1>Stwórz Konto</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>albo użyj konta email by się zarejestrować</span>
+                <input type="text" id="registerName" placeholder="Imię" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Hasło" required>
+                <button class="animated-button" type="submit">Zarejestruj się</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="loginForm">
+                <h1>Zaloguj Się</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>albo użyj konta email by się zalogować</span>
+                <input type="email" id="username" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Hasło" required>
+                <a href="#">Zapomniałeś swojego hasła?></a>
+                <button class="animated-button" type="submit">Zaloguj Się</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Witamy znowu!</h1>
+                    <p>Zaloguj się by korzystać z wszystkich dostępnych opcji na stronie</p>
+                        <button class="hidden" id="login">Zaloguj Się</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Witaj!</h1>
+                    <p>Zarejestruj się by korzystać z wszystkich dostępnych opcji na stronie</p>
+                    <button class="hidden" id="register">Zarejestruj Się</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="login.js"></script>
+    </body>
+</html>

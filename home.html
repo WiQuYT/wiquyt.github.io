@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona główna</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="home animate__animated animate__fadeIn">
+    <nav class="animated-slide-in">
+        <div class="logo">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li><a href="#">Element 1</a></li>
+            <li><a href="#">Element 2</a></li>
+            <li><a href="#">Element 3</a></li>
+        </ul>
+        <button id="logoutButton" onclick="logout()">Wyloguj się</button>
+    </nav>
+    <main>
+        <section class="hero-section">
+            <h1>Witaj na stronie głównej!</h1>
+            <p>Tylko zalogowani użytkownicy mają tutaj dostęp.</p>
+        </section>
+        <section class="section">
+            <h2>Sekcja 1</h2>
+            <p>Treść pierwszej sekcji. Możesz dodać tutaj różne informacje.</p>
+        </section>
+
+        <section class="section">
+            <h2>Sekcja 2</h2>
+            <p>Treść drugiej sekcji. Możesz dodać więcej treści, zdjęć lub innych elementów.</p>
+        </section>
+
+        <section class="section">
+            <h2>Sekcja 3</h2>
+            <p>Treść trzeciej sekcji. Możesz przedstawić tutaj dowolne informacje.</p>
+        </section>
+    </main>
+
+    <script>
+        if (localStorage.getItem('loggedIn') !== 'true') {
+            window.location.href = 'index.html';
+        }
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'index.html';
+        }
+
+        function revealSections() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+    </script>
+</body>
+</html>
