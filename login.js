@@ -14,14 +14,14 @@ loginBtn.addEventListener('click', () => {
 function showAlert(message) {
     const alert = document.getElementById('customAlert');
     const alertMessage = document.getElementById('alertMessage');
-    alertMessage.innerText = message; // Ustawienie treści alertu
-    alert.classList.add('visible'); // Dodanie klasy do widoczności
+    alertMessage.innerText = message;
+    alert.classList.add('visible');
 }
 
 // Funkcja do zamykania alertu
 function closeAlert() {
     const alert = document.getElementById('customAlert');
-    alert.classList.remove('visible'); // Usunięcie klasy widoczności
+    alert.classList.remove('visible');
 }
 
 // Użycie alertu w kodzie
@@ -34,7 +34,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     const userData = { name, email, password };
     localStorage.setItem('user_' + email, JSON.stringify(userData));
 
-    showAlert('Rejestracja zakończona sukcesem! Możesz się teraz zalogować.'); // Użycie nowego alertu
+    showAlert('Rejestracja zakończona sukcesem! Możesz się teraz zalogować.');
     container.classList.remove("active");
 });
 
